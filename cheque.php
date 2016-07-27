@@ -60,6 +60,7 @@ class Cheque extends PaymentModule
 		$this->displayName = $this->l('Payments by check');
 		$this->description = $this->l('This module allows you to accept payments by check.');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete these details?');
+		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => '1.6.99.99');
 
 		if ((!isset($this->chequeName) || !isset($this->address) || empty($this->chequeName) || empty($this->address)))
 			$this->warning = $this->l('The "Pay to the order of" and "Address" fields must be configured before using this module.');
