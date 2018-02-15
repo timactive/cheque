@@ -171,10 +171,11 @@ class Cheque extends PaymentModule
 			return;
 
 		$state = $params['objOrder']->getCurrentState();
+		$rest_to_paid = $params['objOrder']->getOrdersTotalPaid() - $params['objOrder']->getTotalPaid();
 		if (in_array($state, array(Configuration::get('PS_OS_CHEQUE'), Configuration::get('PS_OS_OUTOFSTOCK'), Configuration::get('PS_OS_OUTOFSTOCK_UNPAID'))))
 		{
 			$this->smarty->assign(array(
-				'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
+				'total_to_pay' => Tools::displayPrice($rest_to_paid, $params['currencyObj'], false),
 				'chequeName' => $this->chequeName,
 				'chequeAddress' => Tools::nl2br($this->address),
 				'status' => 'ok',
